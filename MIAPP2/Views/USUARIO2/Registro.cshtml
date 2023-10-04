@@ -1,0 +1,51 @@
+﻿@model MIAPP2.Models.USUARIO2
+
+@{
+    ViewBag.Title = "Registro";
+}
+
+<div class="row" style="padding: 5px 5px 5px 5px;">
+    <div class="col-1 botonVolver text-center " style=" margin-left: 15px;">
+        @Html.ActionLink("VOLVER", "Home")
+    </div>
+    <div class="col-11">
+
+    </div>
+</div>
+<div class="container">
+    <h1>Crea un usuario!</h1>
+    <input type="text" placeholder="Nombre de usuario" id="entryUsername" />
+    <input type="password" placeholder="Contraseña" id="entryPassword" />
+    <input type="email" placeholder="Correo electrónico" id="entryEmail" />
+    <div>
+        <label>Fecha de Cumpleaños!</label>
+        <input type="date" id="fechaNacimiento" />
+    </div>
+
+    <h2>Ingresa tu numero de telefono!</h2>
+    <div class="phone-input">
+        <input type="text" placeholder="Código de País" id="entryCodigoPais" />
+        <input type="number" placeholder="Número de Área" id="entryNumeroArea" />
+        <input type="number" placeholder="Número de Teléfono" id="entryNumeroTelefono" />
+    </div>
+
+    <h2>Selecciona tu localidad!</h2>
+    <div class="location-input">
+        <select id="paisPicker">
+            <option value="1">Argentina</option>
+        </select>
+        <select id="provinciaPicker">
+            <option value="1">La Pampa</option>
+        </select>
+        <select id="localidadPicker">
+            <option value="1">Santa Rosa</option>
+            <option value="2">Toay</option>
+        </select>
+    </div>
+
+    <button id="btnRegistrar" onclick="Registrarse()">REGISTRATE!</button>
+    <div id="BusyIndicator" class="hidden"></div>
+    <p>¿Ya tienes una cuenta? <a href="#" id="loginLink">Inicia sesión</a></p>
+</div>
+
+<script src="~/Scripts/JS/Registro.js"></script>

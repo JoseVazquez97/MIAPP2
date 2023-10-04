@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MIAPP2.Models.USUARIO2>
+
+@{
+    ViewBag.Title = "Recuperacion";
+
+    var sessionNick = (string)Session["UserNick"];
+    var sessionID = (string)Session["UserName"];
+    var sessionTipo = (string)Session["UserTipo"];
+}
+
+<div style="padding:25px 15% 0px 15%;">
+
+    <div class="row mb-5">
+        <h2 class="miTitulo">Recuperacion</h2>
+    </div>
+
+
+    @using (Html.BeginForm("Recuperacion", "USUARIO2", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-12">
+
+                <table class="table table-fluid transparencia redondeado">
+                    <tr class="col-12">
+                        <th class="tituloGrid col-2">
+                            <p>USUARIO NICK</p>
+                        </th>
+                        <th class="tituloGrid col-2">
+                            <p>CONTRASEÑA</p>
+                        </th>
+                        <th class="tituloGrid col-2">
+                            <p>TIPO</p>
+                        </th>
+                        <th class="tituloGrid col-2">
+                            <p>ACTIVO</p>
+                        </th>
+                        <th class="tituloGrid col-2">
+                            <p>FECHA</p>
+                        </th>
+                        <th class="tituloGrid col-2"></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        if (item.Usuario2Estado == "F" && sessionID != item.Usuario2ID.ToString())
+                        {
+                            <tr class="col-12">
+                                <td class="col-2 text-center letraBoton">
+                                    @Html.DisplayFor(modelItem => item.Usuario2Nick)
+                                </td>
+
+                                <td class="col-2 text-center letraBoton">
+                                    @Html.DisplayFor(modelItem => item.Usuario2Pass)
+                                </td>
+
+                                <td class="col-2 text-center letraBoton">
+                                    @Html.DisplayFor(modelItem => item.Usuario2Tipo)
+                                </td>
+
+                                <td class="col-2 text-center letraBoton">
+                                    @Html.DisplayFor(modelItem => item.Usuario2Estado)
+                                </td>
+
+                                <td class="col-2 text-center letraBoton">
+                                    @Html.DisplayFor(modelItem => item.Usuario2Fecha)
+                                </td>
+
+                                <td class="col-2 text-center">
+                                    @if (sessionTipo == "A")
+                                    {
+                                        <input type="hidden" name="id" value="@item.Usuario2ID">
+                                        <input type="submit" value="Recuperar" class="btn btn-success">
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+
+        </div>
+    }
+</div>

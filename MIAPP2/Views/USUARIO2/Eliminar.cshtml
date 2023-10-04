@@ -1,0 +1,88 @@
+﻿@model MIAPP2.Models.USUARIO2
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+@using (Html.BeginForm("Eliminar", "USUARIO2", new { id = Model.Usuario2ID }, FormMethod.Post, new { id = "eliminarForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card centrarBox margenTop10por">
+        <div class="card-body">
+            <div>
+                <h4 class="card-title text-center">@Model.Usuario2Nick</h4>
+                <hr />
+
+                <div class="form-group row">
+                    <label class="col-12 text-center">Usuario2Pass:</label>
+                    <div class="col-12 text-center">
+                        @Html.DisplayFor(model => model.Usuario2Pass)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-12 text-center">Usuario2Tipo:</label>
+                    <div class="col-12 text-center">
+                        @Html.DisplayFor(model => model.Usuario2Tipo)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-12 text-center">Usuario2Estado:</label>
+                    <div class="col-12 text-center">
+                        @Html.DisplayFor(model => model.Usuario2Estado)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-12 text-center">Usuario2Fecha:</label>
+                    <div class="col-12 text-center">
+                        @Html.DisplayFor(model => model.Usuario2Fecha)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-12 text-center">Usuario2Status:</label>
+                    <div class="col-12 text-center">
+                        @Html.DisplayFor(model => model.Usuario2Status)
+                    </div>
+                </div>
+
+                <div class="form-group row mt-5">
+                    <div class="col-12 text-center">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmarModal">ELIMINAR</button>
+                            @Html.ActionLink("CANCELAR", "Home", null, new { @class = "btn btn-secondary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmarModal" tabindex="-1" role="dialog" aria-labelledby="confirmarModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmarModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas eliminar este registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" form="eliminarForm" class="btn btn-danger" value="Eliminar" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,202 @@
+﻿@model IEnumerable<MIAPP2.Models.USUARIO2>
+
+@{
+    ViewBag.Title = "Home";
+    var sessionNick = (string)Session["UserNick"];
+    var sessionID = (string)Session["UserName"];
+    var sessionTipo = (string)Session["UserTipo"];
+
+}
+
+<div style="display:none;">
+    <p>Session ID: <span id="sessionIDElement"></span></p>
+    <p>Session Tipo: <span id="sessionTipoElement"></span></p>
+</div>
+
+<div class="transparencia tamañoMinimoTable paddingGeneral20">
+    <div class="row" style="margin-bottom:25px;">
+
+        <!-- TITULO E IMAGEN -->
+
+        <div class="row">
+
+            <div class="col-8">
+                <h2 class="miTitulo" style="text-align: left; color: green;">PARTIDOS YA</h2>
+            </div>
+            <div class="col-4 d-flex justify-content-end cursor" id="myDiv" onclick="redirigirAVista()">
+                <div class="userImg"></div>
+            </div>
+
+        </div>
+
+        <!-- ESPACIO Y USUARIO -->
+        <div class="row">
+
+            <div class="col-8">
+            </div>
+            <div class="col-4 d-flex justify-content-end" style="min-width:50px;">
+                <p id="sessionNickElement" style="font-size:20px; font-weight:600; text-align:center;"></p>
+            </div>
+
+        </div>
+
+        <!-- TITULOS DE TABLAS -->
+
+        <div class="row" style="margin-bottom: 25px;">
+            <div class="col-4">
+                <h2 class="text-left mb-0 "><span style="color:darkred; font-weight:900;">¡ENCUENTRA PERSONAS!</span></h2>
+            </div>
+            <div class="col-1">
+
+            </div>
+            <div class="col-6">
+                <div class="d-flex flex-column align-items-start">
+                    <h2 class="text-center text-lg-left mb-0">¿Quieres Unirte? <span style="color: darkred; font-weight: 900;">¡ENCUENTRA CANCHAS!</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILTROS -->
+
+        <div class="row mb-4">
+            <div class="col-4 semiTransparencia redondeado" style="padding-top:5px; padding-bottom:5px;">
+
+                <div class="tituloGrid col-12">
+                    <input type="text" name="filtroUsuario2Nick" placeholder="Nick">
+                    <input type="submit" value="Filtrar">
+                </div>
+
+            </div>
+
+            <div class="col-1">
+
+            </div>
+
+            <div class="col-6 semiTransparencia redondeado" style="padding-top: 5px; padding-bottom: 5px;">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="tituloGrid">
+                            <input type="text" name="filtroCanchaNick" placeholder="Nombre">
+                            <input type="submit" value="Filtrar">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="tituloGrid">
+                            @if (sessionTipo == "A")
+                            {
+                                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Registro", "USUARIO2")'">
+                                    Agregar
+                                </button>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        @if (sessionTipo == "A")
+                        {
+                            <div class="tituloGrid">
+                                <button type="button" class="btn btn-primary" onclick="exportarPDF()">Exportar PDF</button>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-2">
+                        @if (sessionTipo == "A")
+                        {
+                            <div class="tituloGrid">
+                                <input type="button" value="Recuperación" class="btn btn-primary" onclick="location.href='@Url.Action("Recuperacion", "USUARIO2")'" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLAS -->
+
+        <div class="row">
+
+            <!-- TABLA JUGADOR -->
+
+            <div id="divGrillaJugadores" class="col-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <!-- Agrega más columnas según tus necesidades -->
+                        </tr>
+                    </thead>
+                    @using (Ajax.BeginForm("ObtenerGrillaUsuarios", "USUARIO2Controller", new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                        UpdateTargetId = "divJugadores",
+                        InsertionMode = InsertionMode.Replace
+                    }, new { @id = "frmFiltrado" }))
+                    {
+                        @Html.Label("Filtrar por Jugador")
+                        @Html.TextBox("nombreFiltro")
+                        <div id="divJugadores">
+                            @Html.Partial("_GrillaUsuarios", Model)
+                        </div>
+                    }
+                </table>
+            </div>
+
+            <!-- ESPACIADO -->
+
+            <!-- TABLA CANCHAS -->
+
+            <div class="col-7">
+                <table class="table table-fluid transparencia redondeado">
+                    <tr class="col-12">
+                        <th class="tituloGrid col-4">
+                            <p>CANCHA</p>
+                        </th>
+                        <th class="tituloGrid col-4">
+                            <p>DISPONIBILIDAD</p>
+                        </th>
+                        <th class="tituloGrid col-4">
+                            @if (sessionTipo == "A")
+                            {
+                                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Registro", "USUARIO2")'">
+                                    Create New
+                                </button>
+                            }
+                        </th>
+                    </tr>
+                    @using (Ajax.BeginForm("ObtenerGrillaCancha", "USUARIO2Controller", new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                        UpdateTargetId = "divCancha",
+                        InsertionMode = InsertionMode.Replace
+                    }, new { @id = "frmFiltradoCancha" }))
+                    {
+                        @Html.Label("Filtrar por Cancha")
+                        @Html.TextBox("nombreFiltroCancha")
+                        <div id="divCancha">
+                            @Html.Partial("_GrillaCancha", Model)
+                        </div>
+                    }
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/JS/Home.js"></script>
+
+
+<script>
+    function redirigirAVista() {
+        window.location.href = '/MIAPP2/USUARIO2/Perfil';
+    }
+
+    function exportarPDF() {
+        // Obtener la URL del controlador de acción para generar el PDF
+        var url = '@Url.Action("ExportarPDF", "USUARIO2")';
+
+        // Redireccionar a la URL para generar el PDF
+        window.location.href = url;
+    }
+</script>

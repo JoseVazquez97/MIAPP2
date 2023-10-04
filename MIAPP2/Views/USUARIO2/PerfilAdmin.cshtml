@@ -1,0 +1,87 @@
+﻿@model MIAPP2.Models.USUARIO2
+
+@{
+    ViewBag.Title = "Perfil";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card centrarBox margenTop10por">
+        <div class="card-body">
+            <h4 class="card-title">
+                <span class="miTitulo" style="color:black;">Perfil de: </span>
+                <span class="miTitulo">@Html.DisplayFor(model => model.Usuario2Nick)</span>
+            </h4>
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Usuario2ID)
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Usuario2Nick, htmlAttributes: new { @class = "col-12 text-center" })
+                <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                    @Html.TextBoxFor(model => model.Usuario2Nick, new { @class = "form-control text-center" })
+                    @Html.ValidationMessageFor(model => model.Usuario2Nick, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Usuario2Pass, htmlAttributes: new { @class = "col-12 text-center" })
+                <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                    @Html.TextBoxFor(model => model.Usuario2Pass, new { @class = "form-control text-center" })
+                    @Html.ValidationMessageFor(model => model.Usuario2Pass, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Usuario2Status, htmlAttributes: new { @class = "col-12 text-center" })
+                <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                    @Html.DropDownListFor(model => model.Usuario2Status, new SelectList(new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "ONLINE", Value = "O" },
+                        new SelectListItem { Text = "OFFLINE", Value = "F" }
+                    }, "Value", "Text", Model.Usuario2Status), new { @class = "form-control text-center" })
+                    @Html.ValidationMessageFor(model => model.Usuario2Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Usuario2Tipo, htmlAttributes: new { @class = "col-12" })
+                <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                    @Html.TextBoxFor(model => model.Usuario2Tipo, new { @class = "form-control text-center" })
+                    @Html.ValidationMessageFor(model => model.Usuario2Tipo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Usuario2Estado, htmlAttributes: new { @class = "col-12" })
+                <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                    @Html.TextBoxFor(model => model.Usuario2Estado, new { @class = "form-control text-center" })
+                    @Html.ValidationMessageFor(model => model.Usuario2Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Usuario2Fecha, htmlAttributes: new { @class = "col-12" })
+                <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                    @Html.TextBoxFor(model => model.Usuario2Fecha, new { @class = "form-control text-center" })
+                    @Html.ValidationMessageFor(model => model.Usuario2Fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group row mt-5">
+                <div class="col-12 text-center">
+                    <div class="d-flex justify-content-center">
+                        <input type="submit" value="Guardar" class="btn btn-primary" style="margin-right:3px;" />
+                        @Html.ActionLink("Volver", "Home", null, new { @class = "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,159 @@
+﻿@model MIAPP2.Models.USUARIO2
+
+@{
+    ViewBag.Title = "Perfil";
+
+    string sessionTipo = (string)Session["UserTipo"];
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card centrarBox margenTop10por">
+        <div class="card-body">
+            <h4 class="card-title">
+                <span class="miTitulo" style="color:black;">Perfil de: </span>
+                <span class="miTitulo">@Html.DisplayFor(model => model.Usuario2Nick)</span>
+            </h4>
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Usuario2ID)
+
+            @if (sessionTipo == "J" || sessionTipo == "C")
+            {
+                <div class="form-group row">
+                    <div class="col-12">
+                        @if (Model.Usuario2Tipo == "C")
+                        {
+                            <p class="textoModPerfil text-center">CANCHA</p>
+                        }
+                        else
+                        {
+                            <p class="textoModPerfil text-center">JUGADOR</p>
+                        }
+                        @Html.ValidationMessageFor(model => model.Usuario2Tipo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <p class="miTitulo text-center">@Model.Usuario2Nick</p>
+                        @Html.ValidationMessageFor(model => model.Usuario2Nick, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Usuario2Status, htmlAttributes: new { @class = "col-12 text-center" })
+                    <div class="col-12">
+                        @if (Model.Usuario2Status == "O")
+                        {
+                            <p class="textoModPerfil text-center" style="color:green;">ONLINE</p>
+                        }
+                        else
+                        {
+                            <p class="textoModPerfil text-center" style="color: red;">OFFLINE</p>
+                        }
+                        @Html.ValidationMessageFor(model => model.Usuario2Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!--De aca hacia abajo hidden-->
+
+                <div class="form-group row visually-hidden">
+                    @Html.LabelFor(model => model.Usuario2Tipo, htmlAttributes: new { @class = "col-12  text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.TextBoxFor(model => model.Usuario2Tipo, new { @class = "form-control text-center" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Tipo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row visually-hidden">
+                    @Html.LabelFor(model => model.Usuario2Estado, htmlAttributes: new { @class = "col-12  text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.TextBoxFor(model => model.Usuario2Estado, new { @class = "form-control text-center" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Estado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row visually-hidden">
+                    @Html.LabelFor(model => model.Usuario2Fecha, htmlAttributes: new { @class = "col-12  text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.TextBoxFor(model => model.Usuario2Fecha, new { @class = "form-control text-center" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Fecha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+
+            @if (sessionTipo == "A")
+            {
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Usuario2Nick, htmlAttributes: new { @class = "col-12 text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.TextBoxFor(model => model.Usuario2Nick, new { @class = "form-control text-center", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Nick, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Usuario2Pass, htmlAttributes: new { @class = "col-12 text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.TextBoxFor(model => model.Usuario2Pass, new { @class = "form-control text-center", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Pass, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Usuario2Status, htmlAttributes: new { @class = "col-12 text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.DropDownListFor(model => model.Usuario2Status, new SelectList(new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Jugador", Value = "J" },
+                            new SelectListItem { Text = "Cancha", Value = "C" }
+                        }, "Value", "Text", Model.Usuario2Status), new { @class = "form-control text-center" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Usuario2Tipo, htmlAttributes: new { @class = "col-12  text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.TextBoxFor(model => model.Usuario2Tipo, new { @class = "form-control text-center" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Tipo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Usuario2Estado, htmlAttributes: new { @class = "col-12  text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.TextBoxFor(model => model.Usuario2Estado, new { @class = "form-control text-center" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Estado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Usuario2Fecha, htmlAttributes: new { @class = "col-12  text-center" })
+                    <div class="col-12 paddingLeft15" style="padding-left: 12%;">
+                        @Html.TextBoxFor(model => model.Usuario2Fecha, new { @class = "form-control text-center" })
+                        @Html.ValidationMessageFor(model => model.Usuario2Fecha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            }
+
+            <div class="form-group row mt-5">
+                <div class="col-12 text-center">
+                    <div class="d-flex justify-content-center">
+                        @Html.ActionLink("Home", "Home", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

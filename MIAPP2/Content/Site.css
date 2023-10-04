@@ -1,0 +1,268 @@
+﻿
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+table, th, td 
+{
+    border: 1px solid white;
+    border-collapse:collapse;
+}
+
+td 
+{
+    
+}
+
+.miTitulo {
+    color: darkred;
+    font-size: 45px;
+    font-weight: 900;
+}
+
+.tamañoBoton {
+    padding: 5px 20px 5px 20px;
+}
+
+.bordesBlancos 
+{
+    border: 0px solid white;
+}
+
+.box2PX {
+    border: 2px solid black;
+}
+
+
+
+.paddingGeneral20 
+{
+    padding: 20px;
+}
+
+.centrarBox
+{
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.margenBot25por 
+{
+    margin-bottom: 25%;
+}
+
+.margenBot15por 
+{
+    margin-bottom: 15%;
+}
+
+.margenTop10por {
+    margin-top: 10%;
+}
+
+.userImg {
+    background-image: url(http://drive.google.com/uc?export=view&id=182WCDPXJy2W4PNTQnohJFysdWQ8sjinp);
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+}
+
+.fondito {
+    background-image: url(http://drive.google.com/uc?export=view&id=14UGSIb48WTEyIsrHNPupKuYZSijMfQRk);
+    background-size: cover;
+}
+
+.transparencia {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.redondeado {
+    border-radius: 7px;
+}
+
+
+.blanco {
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 3;
+}
+
+.usuarioInvite {
+    padding-top: 15px;
+    background-color: transparent;
+    color: blue;
+    font-size: 20px;
+    border: 0px solid transparent;
+    cursor: pointer;
+}
+
+.aprovechAncho 
+{
+    width: 100%;
+}
+
+.tituloGrid
+{
+    color: forestgreen;
+    font-family: 'Impact';
+    font-size: 22px;
+    text-align: center;
+}
+
+.margenLeft25 
+{
+    margin-left: 25px;
+}
+
+.margenRigth25 {
+    margin-right: 25px;
+}
+
+.contenido {
+    width: 100%;
+}
+
+.left {
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-left: 57px;
+    float: left;
+    position: relative;
+    width: 45%;
+    border: steelblue solid 1px;
+    height: auto;
+}
+
+.right {
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-left: 10px;
+    position: relative;
+    float: left;
+    width: 45%;
+    border: steelblue solid 1px;
+    height: auto;
+}
+
+.tamañoMinimoTable {
+    min-height: 1000px;
+}
+
+.centraTabla {
+    width: 70%;
+    margin-left: 17%;
+}
+
+.espaciado 
+{
+    margin-top:200px;
+}
+
+.botonVolver 
+{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    background-color:white;
+    
+}
+
+.paddingLeft20 
+{
+    padding-left:20%;
+}
+
+.textoMio 
+{
+    font-size: 18px;
+    color: black;
+    font-weight: 900;
+}
+
+.sombreado {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    color: #333;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+    .sombreado::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: -10%;
+        width: 120%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        transform: skewY(-5deg);
+        transition: all 0.3s;
+        z-index: -1;
+    }
+
+    .sombreado:hover {
+        background-color: #e9ecef;
+    }
+
+        .sombreado:hover::before {
+            top: -100%;
+        }
+
+.semiTransparencia {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.letraBoton 
+{
+    font-size: 20px;
+    font-weight: 900;
+ 
+}
+
+th 
+{
+    padding-bottom:0px;
+}
+
+.btn-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.paddingLeft15 
+{
+    margin-left: 15%;
+}
+
+.textoModPerfil {
+    font-size:26px;
+    font-weight:900;
+    color:forestgreen;
+}
+
+.cursor 
+{
+    cursor:pointer;
+}
